@@ -1,0 +1,164 @@
+<?php
+	/**
+	 * itinerary form
+	 * @package admin-login
+	 * @date 17th June 2014
+	 */
+	require_once('views/_templates/sidebar.php');
+	$infoGrade = "";
+    $infoSupplement = "";
+    $infoCode = "";
+    ?>
+	<div class="content">        
+	        <div class="header">            
+	            <h1 class="page-title">Update Itinerary Info</h1>
+    	    </div>
+            <ul class="breadcrumb">
+                <li><a href="<?=ADMIN_URL?>">Home</a> <span class="divider">/</span></li>
+                <li><a href="<?=ADMIN_URL?>/menu/lists">Itinerary</a> <span class="divider">/</span></li>
+                <li class="active">Itinerary-Info</li>
+            </ul>
+            
+           	<div class="container-fluid">
+            	<div class="row-fluid">
+                <?php  if (isset($this->errors)) : ?>
+                	<div class="alert alert-error">
+                    	<button data-dismiss="alert" class="close" type="button">×</button>
+						<?php 
+                            foreach ($this->errors as $error) : 
+                                echo $error;
+                            endforeach; 
+                        ?>
+                	</div>
+                <?php endif; ?>
+					<div class="well">
+				    <form id="itineraryForm" action="<?=ADMIN_URL?>/itineraries/save" method="post" autocomplete="off">
+				        <label>Trip Code *</label>
+				        <input type="text" name="info_code" value="<?=$infoCode?>" class="input-xlarge" placeholder="Enter Trip Code here" />
+                        <label>Single Supplement</label>
+                        <input type="text" name="info_supplement" value="<?=$infoSupplement?>" class="input-xlarge" placeholder="Mention in US dollar" />
+                        <label>Trip Grade</label>
+						<select name="info_grade" id="infoGrade">
+                        	<option >Select Grade</option>
+                            <option value="1" <?php if($infoGrade == "1") echo "selected"?>>1</option>
+                            <option value="2" <?php if($infoGrade == "2") echo "selected"?>>2</option>
+                            <option value="3" <?php if($infoGrade == "3") echo "selected"?>>3</option>
+                            <option value="4" <?php if($infoGrade == "4") echo "selected"?>>4</option>
+                            <option value="5" <?php if($infoGrade == "5") echo "selected"?>>5</option>
+                        </select>
+                        
+                        <label>Activities</label>
+                        <input type="text" name = "info_activities" class = "input-xlarge" value="" data-role="tagsinput" placeholder="Add Activities tags" />
+
+                        <label>Group Size</label>
+                        <div class="input-append spinner" data-trigger="spinner">
+                            <input type="text" name = "info_groupsize " value="1" data-rule="quantity">
+                            <div class="add-on"> <a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a> </div>
+                        </div>
+                        <label>Daily Walking Hour</label>
+                        <div class="input-append spinner" data-trigger="spinner">
+                            <input type="text" name = "info_dlywlknghr" value="1" data-rule="quantity">
+                            <div class="add-on"> <a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a> </div>
+                        </div>
+                        
+                        <label>Tour Duration</label>
+                        <div class = "form-inline">
+                            <div class="input-append spinner" data-trigger="spinner">
+                                <input type="text" name = "tour_duration_nights" value="1" data-rule="quantity">
+                                <div class="add-on"><a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a> </div>
+                                <div class="add-on">Nights</div>
+                            </div>
+                            <div class="input-append spinner" data-trigger="spinner">
+                                <input type="text" name = "tour_duration_days" value="1" data-rule="quantity">
+                                <div class="add-on"><a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a> </div>
+                                <div class="add-on">Days</div>
+                            </div>
+                        </div>    
+
+                        <label>Trek Duration</label>
+                        <div class = "form-inline">
+                            <div class="input-append spinner" data-trigger="spinner">
+                                <input type="text" name = "trek_duration_nights" value="1" data-rule="quantity">
+                                <div class="add-on"><a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a> </div>
+                                <div class="add-on">Nights</div>
+                            </div>
+                            <div class="input-append spinner" data-trigger="spinner">
+                                <input type="text" name = "trek_duration_days" value="1" data-rule="quantity">
+                                <div class="add-on"><a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a> </div>
+                                <div class="add-on">Days</div>
+                            </div>
+                        </div>    
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="radios">Tour Seasons</label>
+                          <div class="col-md-4">
+                          <div class="radio">
+                            <label for="radios-0">
+                              <input name="radios" id="radios-0" value="1" checked="checked" type="radio">
+                              Spring [mid-March to mid-May]
+                            </label>
+                            </div>
+                          <div class="radio">
+                            <label for="radios-1">
+                              <input name="radios" id="radios-1" value="2" type="radio">
+                              Summer [mid-May to mid-September]
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label for="radios-1">
+                              <input name="radios" id="radios-1" value="2" type="radio">
+                              Autumn [mid-September to mid-January]
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label for="radios-1">
+                              <input name="radios" id="radios-1" value="2" type="radio">
+                               Winter [mid-January to mid-March]
+                            </label>
+                          </div>
+                          </div>
+                        </div>
+                        <label>Trip Style</label>
+                        <div class = "form-inline">
+                            <input type = "radio" name  = "info_style">&nbsp;<label>Trekking</label>
+                            <input type = "radio" name  = "info_style">&nbsp;<label>PeakClimbing</label>
+                            <input type = "radio" name  = "info_style">&nbsp;<label>SightSeeing</label>
+                            <input type = "radio" name  = "info_style">&nbsp;<label>Other</label>
+                        </div>
+
+                        <label>Accommodation</label>
+                        <input type = "text" name  = "info_accommodation">
+                        
+                        <label>Transportation</label>
+                        <input type="text" name = "info_activities" class = "input-xlarge" value="" data-role="tagsinput" placeholder="Add Activities tags"/>
+
+                        <label>Flight Charge</label>
+                       <div class="input-append spinner" data-trigger="spinner">
+                                <div class="add-on">$</div>
+                                <input type="text" name = "trek_duration_nights" value="1" data-rule="currency">
+                                <div class="add-on"><a href="javascript:;" class="spin-up" data-spin="up"><i class="icon-sort-up"></i></a> <a href="javascript:;" class="spin-down" data-spin="down"><i class="icon-sort-down"></i></a> </div>
+                        </div>
+
+                        <label>Trip added date</label>
+                        <input type="text" name="trip_date" value="<?=$tripDate?>" class="input-xlarge" id="datetime" />
+                        <label>Trip Overview</label>
+	                        <textarea rows="3" class="input-xxlarge" name="trip_overview" id="tinyEditor"><?=stripslashes($tripOverview)?></textarea>
+                        <label>Trip Outline</label>
+                            <textarea rows="3" class="input-xxlarge" name="trip_outline" id="tinyEditor1"><?=stripslashes($tripOutline)?></textarea>
+                        <label>Trip Day to Day</label>
+                            <textarea rows="3" class="input-xxlarge" name="trip_day2day" id="tinyEditor2"><?=stripslashes($tripDay2Day)?></textarea>
+                        <label>Trip Notes</label>
+                            <textarea rows="3" class="input-xxlarge" name="trip_notes" id="tinyEditor3"><?=stripslashes($tripNotes)?></textarea>
+
+                        <div>
+                       		<button class="btn btn-primary"><i class="icon-save"></i> Save</button>
+                        </div>
+                        <input type="hidden" name="trip_id" value="<?=$tripId?>" />
+                        <input type="hidden" name="form" value="<?=$newForm?>" />
+                        <input type="hidden" name="trip_order" value="<?=$tripOrder?>" />
+                    </form>
+                    </div>
+                </div> <!-- .row-fluid -->
+                <?php require_once('views/_templates/footer-info.php');?>                    
+            </div> <!-- .container-fluid -->
+        </div> <!-- .content -->
+                      
