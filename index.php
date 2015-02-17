@@ -1,10 +1,6 @@
 <?php
 	/**
-	 * Frontend Template Section
-	 *
-	 * @package marvelousnepal
-	 * @author Jay Gaha
-	 * @link http://jaygaha.com.np
+	 * @author Anooz Prasai
 	 * @date 07th Jan 2014
 	 */
 	 
