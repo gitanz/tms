@@ -3,8 +3,7 @@
 	 * Admin Section
 	 *
 	 * @package admin-login
-	 * @author Jay Gaha
-	 * @link http://jaygaha.com.np
+	 * @author Anooz Prasai
 	 * @date 11th Dec 2013
 	 */
 	 
